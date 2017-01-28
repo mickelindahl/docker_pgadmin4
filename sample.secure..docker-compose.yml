@@ -1,1 +1,10 @@
 
+
+pgadmin4:
+  image: fenglc/pgadmin4
+  container_name: pgadmin4
+  ports:
+    - "5050:5050"
+  volumes:
+    - ./data:/root/.pgadmin/
+  restart: always
