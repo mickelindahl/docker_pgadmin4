@@ -1,8 +1,19 @@
-pgadmin4:
-  image: fenglc/pgadmin4
-  container_name: pgadmin4
-  ports:
-    - "5050:5050"
-  volumes:
-    - ./data:/root/.pgadmin/
-  restart: always
+version: "2"
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        PGADMIN_DOWNLOAD_URL: https://ftp.postgresql.org/pub/pgadmin3/pgadmin4/v1.1/pip/pgadmin4-1.1-py3-none-any.whl
+    environment:
+      ADMIN_EMAIL: {and email}
+      ADMIN_PASSWORD: {a password} 
+      VIRTUAL_HOST:{domain/subdomain}
+      VIRTUAL_PORT: 5050
+    container_name: pgadmin4
+    volumes:
+      - ./config_local.py:/home/app/pgadmin4/config_local.py
+    restart: always
+    tty: true
+    network_mode: "bridge"

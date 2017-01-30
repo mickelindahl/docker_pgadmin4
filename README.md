@@ -5,9 +5,13 @@ Docker compose script for creating container runnning
 
 ## Installation
 
-Run `mkdir -p data`
+Run `cp sample.config_local.py config_local.py`. 
 
-Run `cp sample.docker-compose.yml docker.compose.yml && docker-compose up -d`
+Add DEFAULT_SERVER and mail settings in `config_local.py`.
+
+Run `cp sample.docker-compose.yml docker.compose.yml` and open `docker-compose.yml` and set a username and password`
+
+Run `docker-compose build && docker-compose up -d`
 
 Done!!
 
