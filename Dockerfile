@@ -2,12 +2,19 @@ FROM python:3.6.0-alpine
 
 ARG PGADMIN_DOWNLOAD_URL
 
-RUN set -x \
-	&&  apk add --no-cache postgresql-libs \
+RUN set -ex \
+	&& apk add --no-cache --virtual .run-deps \
+                nano \
+		bash \
+		postgresql-libs \
 	&&  apk add --no-cache --virtual .build-deps \
+                        openssl \
 			gcc \
+                        postgresql \
 			postgresql-dev \
 			musl-dev \
+	&& apk add --no-cache \
+		postgresql \
         && mkdir -p /home/app \
         && adduser -D -u 1000 -h /home/app -s /bin/false app \
         && chown -R app:app /home/app
@@ -25,4 +32,4 @@ WORKDIR /home/app/pgadmin4
 
 EXPOSE 5050
 
-ENTRYPOINT ["/home/app/pgadmin4/docker-entrypoint.sh"]
+ENTRYPOINT ["/home/app/pgadmin4/docker-entrypoint.sh", "pgadmin4"]
