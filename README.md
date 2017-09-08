@@ -34,6 +34,9 @@ Run `docker-compose build && docker-compose up -d`
 
 Done!!
 
+## Enter conainer
+docker exec -it pgadmin4 /bin/sh
+
 ## Cnnnect to localhost
 
 Run `sudo ip addr show docker0`
