@@ -7,13 +7,37 @@ Docker compose script for creating container runnning
 
 Run `cp sample.config_local.py config_local.py`. 
 
-Add DEFAULT_SERVER and mail settings in `config_local.py`.
+Now open `config_local.py`
+
+Set DEFAULT_SERVER. E.g. `DEFAULT_SERVER=localhost` for running on your local machine 
+or `DEFAULT_SERVER=domain.se` if running on a server with domain. 
+
+If running as a web server yoo also need to configure the mail settings such that
+you can have user login.
+```
+MAIL_SERVER = 'smtp.mailgun.org'
+MAIL_PORT = 25
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'postmaster@domain.se'
+MAIL_PASSWORD = '123'
+```
+
+If running locally disable user login 
+
+```
+SERVER_MODE = False
+```
 
 Run `cp sample.docker-compose.yml docker.compose.yml` and open `docker-compose.yml` and set a username and password`
 
 Run `docker-compose build && docker-compose up -d`
 
 Done!!
+
+## Enter conainer
+```
+docker exec -it pgadmin4 /bin/sh
+```
 
 ## Cnnnect to localhost
 
