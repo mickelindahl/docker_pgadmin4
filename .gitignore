@@ -1,8 +1,2 @@
-# No compose file
+.env
 docker-compose.yml
-
-# No data
-data
-
-# No config local
-config_local.py

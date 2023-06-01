@@ -1,19 +1,17 @@
-version: "2"
+version: '3.3'
 
 services:
-  web:
-    build:
-      context: .
-      args:
-        PGADMIN_DOWNLOAD_URL: https://ftp.postgresql.org/pub/pgadmin3/pgadmin4/v1.1/pip/pgadmin4-1.1-py3-none-any.whl
+  pgadmin:
+    container_name: docker-pgadmin-${BRANCH}
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
     environment:
-      ADMIN_EMAIL: {and email}
-      ADMIN_PASSWORD: {a password} 
-      VIRTUAL_HOST:{domain/subdomain}
-      VIRTUAL_PORT: 5050
-    container_name: pgadmin4
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}  # set this to your email
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}  # set this to your password
     volumes:
-      - ./config_local.py:/home/app/pgadmin4/config_local.py
+      - ${BRANCH}-data:/root/.pgadmin
+    ports:
+      - "5050:80"
     restart: always
-    tty: true
-    network_mode: "bridge"
+
+volumes:
+  ${BRANCH}-data:
