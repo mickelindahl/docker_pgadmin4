@@ -23,7 +23,7 @@ echo ""
 docker-compose up -d
 
 echo "Done!"
-echo""
+echo ""
 echo "Installation competed of pgadmin version $PGADMIN_VERSION!"
 echo "To login use this credentials as user and password"
 echo ""
