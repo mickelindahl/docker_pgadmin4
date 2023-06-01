@@ -10,8 +10,13 @@ services:
     volumes:
       - ${BRANCH}-data:/root/.pgadmin
     ports:
-      - "5050:80"
+      - "${EXTERNAL_PORT}:80"
     restart: always
-
+    networks:
+      - $NETWORK
 volumes:
   ${BRANCH}-data:
+
+networks:
+  $NETWORK:
+     external: true
