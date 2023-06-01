@@ -17,6 +17,7 @@ echo ""
 docker-compose stop
 docker-compose rm
 
+echo ""
 echo "Install"
 echo ""
 docker-compose up -d
